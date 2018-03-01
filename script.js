@@ -2,81 +2,77 @@
 
 
 $(document).ready(function() {
-  var submitButton = $("#weatherSubmit");
   var submitButton2 = $("#searchSubmit");
-  // var clickFunction = function(e) {
-  //   e.preventDefault();
-  //   console.log("You clicked me!");
-  // }
-  // submitButton.click(clickFunction);
 });
 
 $("#searchSubmit").click(function(e) {
   e.preventDefault();
   var value = $("#searchInput").val();
   console.log(value);
-  var myurl = "https://api.stackexchange.com/2.2/search?order=desc&sort=activity&site=stackoverflow&intitle=" + value;
+  var myurl = "https://itunes.apple.com/search?term=" + value;
   $.ajax({
     url : myurl,
     dataType : "json",
     success : function(json) {
+      console.log(json);
       var results = "";
-      results += '<h1>Search result for ' + value + ' (total of ' + json.items.length + ' items)</h1>';
+      results += '<h1>Search results for ' + value + ' (total of ' + json.resultCount + ' items)</h1><br>';
       console.log("DDD");
-      console.log(json.items.length);
-       for (var i = 0; i < json.items.length; i++) {
-         results += "<h2><a href=" + json.items[i].link + ">" + json.items[i].title + "</a></h2>";
-         results += "<p> Status : ";
-         if (json.items[i].is_answered) {
-           results += "answered </p>";
-         }
-         else {
-           results += "not answered </p>";
-         }
-         results += "<p> views : " + json.items[i].view_count + "</p>";
+      results += "<div class=\"container\"><div class=\"row\">";
+       for (var i = 0; i < json.results.length; i++) {
+
+        var imageurl = json.results[i].artworkUrl100;
+
+          results += "<div class=\"col-md-4\"><div class=\"colcontainer\">";
+
+          results += "<div class=\"text-center\">";
+          results += "<img class=\"rounded\" src="+ imageurl + "></div>";
+
+          results += "<table class=\"table table-striped\">";
+
+          var trackname = json.results[i].trackName;
+          if (trackname.length > 25) {
+            trackname = trackname.substring(0, 25);
+            trackname += "...";
+          }
+          results += "<tbody><tr><td class=\"boldtd\">Title</td>";
+          results += "<td>" + trackname + "</td></tr></tbody>";
+
+         //
+          results += "<tbody><tr><td class=\"boldtd\">Artist</td>";
+          var artistname = json.results[i].artistName;
+          if (artistname.length > 25) {
+            artistname = artistname.substring(0, 25);
+            artistname += "...";
+          }
+          results += "<td>" + artistname + "</td></tr></tbody>";
+
+
+
+          results += "<tbody><tr><td class=\"boldtd\">Genre</td>";
+          results += "<td>" + json.results[i].primaryGenreName + "</td></tr></tbody>";
+
+          results += "<tbody><tr><td class=\"boldtd\">Release Date</td>";
+          var releasdate = json.results[i].releaseDate;
+          releasdate = releasdate.substring(0,10);
+          results += "<td>" + releasdate + "</td></tr></tbody>";
+          results += "</table>";
+
+          results += "<h4 class=\"text-center\"><a href=" + json.results[i].trackViewUrl + " target=\"_blank\">visit itunes</a></h4>";
+
+          results += "<p class=\"text-center\">Preview</p>";
+          results += "<div class=\"text-center\">";
+          results += "<audio controls>";
+          results += "<source src=\"" + json.results[i].previewUrl + "\" type=\"audio/mpeg\" />";
+          results += "<source src=\"" + json.results[i].previewUrl + "\" type=\"audio/ogg\" /></audio>";
+
+
+          results += "</div></div></div>";
         }
-        console.log("vv");
+        console.log(results);
+        results += "</div></div>";
       $("#searchResults").html(results);
       console.log(json);
     }
   })
 });
-
-
-//
-$("#weatherSubmit").click(function(e) {
-e.preventDefault();
-var value = $("#weatherInput").val();
-    console.log(value);
-
-    var myurl= "http://api.openweathermap.org/data/2.5/weather?q=" + value + ",US&units=imperial" + "&APPID=0cfb678c104d52c4b455ed6370da19a9";
-    $.ajax({
-        url : myurl,
-        dataType : "json",
-        success : function(json) {
-          var results = "";
-          results += '<h2>Weather in ' + json.name + "</h2>";
-          for (var i=0; i<json.weather.length; i++) {
-              results += '<img src="http://openweathermap.org/img/w/' + json.weather[i].icon + '.png"/>';
-          }
-          results += '<h2>' + json.main.temp + " &deg;F</h2>"
-          results += "<p>";
-          for (var i=0; i<json.weather.length; i++) {
-              results += json.weather[i].description
-              if (i !== json.weather.length - 1)
-            results += ", "
-          }
-          results += "</p>";
-          results += "<h2>Additional Information</h2>";
-          results += '<p>Wind speed : ' + json.wind.speed + " knots</p>";
-          results += '<p>Pressure : ' + json.main.pressure + "Pa</p>";
-          results += '<p>Humidity : ' + json.main.humidity + "%</p>";
-          $("#weatherResults").html(results);
-          console.log(json);
-        }
-    });
-
-
-
-});
-//
