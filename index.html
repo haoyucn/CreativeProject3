@@ -1,32 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Lab 2</title>
-    <link rel="stylesheet" href="/styles.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MusicSearch</title>
+    <link rel="stylesheet" href="./style.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
   </head>
   <body>
-<div class="header">
-    <h1>Lab 2</h1>
+
+
+
+
+<div class="jumbotron">
+	<div class="container">
+		<h1 class="text-center">Search LOL Champions</h1>
+		<p class="text-center">Who is your favorite?</p>
+	</div>
 </div>
 <div class="row">
-
-<div class="col-3 menu">
-  <ul>
-    <li><a href="#" style="text-decoration:none">Home</a></li>
-    <li><a href="./weather.html" style="text-decoration:none">Weather</a></li>
-    <li><a href="./search.html" style="text-decoration:none">Search</a></li>
-  </ul>
+  <div class="col-md-6"></div>
+  <div class="col-md-6"></div>
+  <div class="container">
+  <form>
+    <div class="form-group">
+    <label><h1 class="text-cetnter">Find a Champion</h1></label>
+      <input id="searchInput" type="text" class="form-control" placeholder="Find music"></input>
+    </div>
+    <div class="form-group">
+      <button id="searchSubmit" type="submit" value="Submit" class="btn btn-default">Go!</button>
+    </div>
+    </form>
 </div>
-
-<div class="col-6">
-  <h1>Welcome!</h1>
-  <p>Search weather or stackoverflow.</p>
 </div>
+<div id="searchResults"></div>
 
-</div>
+
+
 <div class="footer">
-  <p>&copy; <a href="https://github.com/BYU-CS260-Winter-2018/lab-2-urimaj">Lab 2</a> All rights reserved</p>
+  <p>&copy; <a href="https://github.com/haoyucn/CreativeProject3">Creative Project 3</a> All rights reserved</p>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script text="type/javascript" src="./script.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 
   </body>
 </html>
