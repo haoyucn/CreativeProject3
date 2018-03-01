@@ -12,7 +12,7 @@
 
 
 
-
+<div id="app">
 <div class="jumbotron">
 	<div class="container">
 		<h1 class="text-center">Search Your Music</h1>
@@ -23,26 +23,29 @@
   <div class="col-md-6"></div>
   <div class="col-md-6"></div>
   <div class="container">
-  <form>
+
+  <form v-on:submit.prevent="GetSongs">
     <div class="form-group">
     <label><h1 class="text-cetnter">What do you want to search for?</h1></label>
-      <input id="searchInput" type="text" class="form-control" placeholder="Find music"></input>
+      <input id="searchInput" type="text" class="form-control" placeholder="Find music" v-model="musicName"></input>
     </div>
+
     <div class="form-group">
       <button id="searchSubmit" type="submit" value="Submit" class="btn btn-default">Go get 'em!</button>
     </div>
     </form>
-</div>
-</div>
-<div id="searchResults"></div>
 
+</div>
+</div>
+<div id="searchResults" v-html="result"> </div>
+</div>
 
 
 <div class="footer">
   <p>&copy; <a href="https://github.com/urimaj/CP2">Creative Project 2</a> All rights reserved</p>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script text="type/javascript" src="./script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+<script src="script.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 
