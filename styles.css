@@ -9,13 +9,6 @@ img {
 
 }
 
-
-.jumbotron {
-  background-image: url("./indeximage.jpg");
-  background-size: cover;
-  min-height: 700px;
-}
-
 /* img::before {
   content: "";
   display: block;
