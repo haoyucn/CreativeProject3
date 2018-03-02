@@ -4,6 +4,7 @@ var app = new Vue({
     musicList: [],
     resultString: '',
     loading: false,
+    musicName: '',
   },
   methods: {
     GetSongs: function(){
